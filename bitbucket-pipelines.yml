@@ -1,0 +1,33 @@
+# This is a sample build configuration for Docker.
+# Check our guides at https://confluence.atlassian.com/x/O1toN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: atlassian/default-image:2
+
+pipelines:
+  default:
+    - step:
+        services:
+          - docker
+        script:
+          # The base name of the image.
+          # Remove this line if you want to set this as an environment variable.
+          - export IMAGE_NAME_BASE_NAME=pipelines-test
+
+          # In this next line could also use $BITBUCKET_COMMIT.
+          - export IMAGE_NAME_COMMIT=$DOCKER_REGISTRY/$IMAGE_NAME_BASE_NAME:$BITBUCKET_BUILD_NUMBER
+          - export IMAGE_NAME_LATEST=$DOCKER_REGISTRY/$IMAGE_NAME_BASE_NAME:latest
+
+          # build the Docker image (this will use the Dockerfile in the root of the repo)
+          - docker build -t $IMAGE_NAME_COMMIT -t $IMAGE_NAME_LATEST .
+
+          # List images created.
+          - docker images
+          
+          # authenticate with the Docker Hub registry
+          - docker login $DOCKER_REGISTRY --username $DOCKER_UN --password $DOCKER_PW
+          
+          # push the new Docker image to the Docker registry
+          - docker push $IMAGE_NAME_COMMIT
+          - docker push $IMAGE_NAME_LATEST
