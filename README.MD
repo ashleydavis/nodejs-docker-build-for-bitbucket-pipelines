@@ -6,12 +6,19 @@ This is the simplest example of a Node.js whose Docker image is built within BB 
 
 - You need a private Docker registry and you need the username and password to access it.
 
+## Important files
+
+- bitbucket-pipelines.yml - Bitbucket Pipelines configuration file that defines the build process for this repo.
+- Dockerfile - The Docker configuration file.
+- index.js - Simplest possible Node.js program.
+- package.json - Node.js package configuration file.
+
 ## Setup instructions
 
 - Create a repo in Bitbucket.
 - Enable Pipelines throught the Bitbucket settings for the repo.
 - You can view/modified the configuration for Pipelines in the file bitbucket-pipelines.yml.
-- You need to set the following [environment variables either in Bitbucket](https://confluence.atlassian.com/bitbucket/variables-in-pipelines-794502608.html)
+- You need to set the following [environment variables in Bitbucket](https://confluence.atlassian.com/bitbucket/variables-in-pipelines-794502608.html)
     - $DOCKER_REGISTRY - the URL to access your private Docker registry.
     - $DOCKER_UN - The username for your private Docker registry.
     - $DOCKER_PW - The password for your private Docker registry.
