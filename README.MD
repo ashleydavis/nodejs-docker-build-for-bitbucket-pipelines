@@ -2,11 +2,11 @@
 
 This is the simplest example of a Node.js whose Docker image is built within BB pipelines and pushed to a private docker registry.
 
-Requirements
+## Requirements
 
 - You need a private Docker registry and you need the username and password to access it.
 
-Setup instructions
+## Setup instructions
 
 - Create a repo in Bitbucket.
 - Enable Pipelines throught the Bitbucket settings for the repo.
@@ -22,3 +22,10 @@ You can check recent builds in Bitbucket under the Pipelines section. Here you c
 If it failed you can check the console to find out why.
 
 After a successful build you can check your private Docker registry to ensure that the expected image has been pushed to it.
+
+## Resources
+
+- https://www.atlassian.com/continuous-delivery/using-docker-with-pipelines
+- https://bitbucket.org/blog/bitbucket-pipelines-supports-building-docker-images-and-service-containers
+- https://confluence.atlassian.com/bitbucket/use-docker-images-as-build-environments-792298897.html
+- https://confluence.atlassian.com/bitbucket/run-docker-commands-in-bitbucket-pipelines-879254331.html
